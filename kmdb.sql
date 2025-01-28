@@ -127,7 +127,7 @@ CREATE TABLE movies (
   movie_title TEXT,
   year_released TEXT,
   MPAA_rating TEXT,
-  studio_id TEXT
+  studio_id INTEGER
 ); 
 
 CREATE TABLE studios (
@@ -142,8 +142,8 @@ CREATE TABLE actors (
 
 CREATE TABLE roles (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  actor_name TEXT,
-  movie_id TEXT,
+  actor_id INTEGER,
+  movie_id INTEGER,
   role TEXT
 ); 
 
@@ -166,6 +166,33 @@ INSERT INTO movies (
   "The Dark Knight Rises", "2012", "PG-13", "Warner Bros."
 );
 
+INSERT INTO roles (
+  movie_id,
+  actor_id,
+  role
+
+) VALUES (
+  "Batman Begins", "Christian Bale", "Bruce Wayne"
+), (
+  "Batman Begins", "Michael Caine", "Alfred"
+), (
+  "Batman Begins", "Liam Neeson", "Ra's Al Ghul"
+), (
+  "Batman Begins", "Katie Holmes", "Rachels Dawes"
+), (
+  "Batman Begins", "Gary Oldman", "Commisoner Gordon"
+), (
+  "The Dark Knight", "Christian Bale", "Bruce Wayne"
+), (
+  "The Dark Knight", "Heath Ledger", "Joker"
+), (
+  "The Dark Knight", "Aaron Eckhart", "Harvey Dent"
+), (
+  "The Dark Knight", "Michael Caine", "Alfred"
+), (
+  "The Dark Knight", "Maggie Gyllenhaal", "Rachel Dawes"
+);
+
 
 -- Prints a header for the movies output
 .print "Movies"
@@ -186,3 +213,5 @@ SELECT movie_title, year_released, MPAA_rating, studio_id from movies;
 
 -- The SQL statement for the cast output
 -- TODO!
+
+SELECT movie_id, actor_id, role FROM roles
