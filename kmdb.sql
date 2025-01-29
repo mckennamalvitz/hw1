@@ -212,7 +212,7 @@ INSERT INTO roles (
 ), (
   3, 1, "Ra's Al Ghul"
 ), (
-  4, 1, "Rachels Dawes"
+  4, 1, "Rachel Dawes"
 ), (
   5, 1, "Commisoner Gordon"
 ), (
@@ -228,7 +228,7 @@ INSERT INTO roles (
   ), (
   1, 3, "Bruce Wayne"
   ), (
-  5, 3, "Commisioner Gordon"
+  5, 3, "Commissioner Gordon"
   ), (
   9, 3, "Bane"
   ), (
