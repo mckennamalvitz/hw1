@@ -152,6 +152,13 @@ CREATE TABLE roles (
 -- Use hard-coded foreign key IDs when necessary
 -- TODO!
 
+INSERT INTO studios (
+  studio_name
+
+) VALUES (
+  "Warner Bros."
+);
+
 INSERT INTO movies (
   movie_title, 
   year_released,
@@ -159,38 +166,75 @@ INSERT INTO movies (
   studio_id
 
 ) VALUES (
-  "Batman Begins", "2005", "PG-13", "Warner Bros."
+  "Batman Begins", "2005", "PG-13", 1
 ), (
-  "The Dark Knight", "2008", "PG-13", "Warner Bros."
+  "The Dark Knight", "2008", "PG-13", 1
 ), (
-  "The Dark Knight Rises", "2012", "PG-13", "Warner Bros."
+  "The Dark Knight Rises", "2012", "PG-13", 1
+);
+
+INSERT INTO actors (
+  actor_name
+
+) VALUES (
+  "Christian Bale"
+), (
+  "Michael Caine"
+), (
+  "Liam Neeson"
+  ), (
+  "Katie Holmes"
+  ), (
+  "Gary Oldman"
+  ), (
+  "Heath Ledger"
+  ), (
+  "Aaron Eckhart"
+  ), (
+  "Maggie Gyllenhaal"
+  ), (
+  "Tom Hardy"
+  ), (
+  "Joseph Gordon-Levitt"
+  ), (
+  "Anne Hathaway"
 );
 
 INSERT INTO roles (
-  movie_id,
   actor_id,
+  movie_id,
   role
 
 ) VALUES (
-  "Batman Begins", "Christian Bale", "Bruce Wayne"
+  1, 1, "Bruce Wayne"
 ), (
-  "Batman Begins", "Michael Caine", "Alfred"
+  2, 1, "Alfred"
 ), (
-  "Batman Begins", "Liam Neeson", "Ra's Al Ghul"
+  3, 1, "Ra's Al Ghul"
 ), (
-  "Batman Begins", "Katie Holmes", "Rachels Dawes"
+  4, 1, "Rachels Dawes"
 ), (
-  "Batman Begins", "Gary Oldman", "Commisoner Gordon"
+  5, 1, "Commisoner Gordon"
 ), (
-  "The Dark Knight", "Christian Bale", "Bruce Wayne"
+  1, 2, "Bruce Wayne"
 ), (
-  "The Dark Knight", "Heath Ledger", "Joker"
+  6, 2, "Joker"
 ), (
-  "The Dark Knight", "Aaron Eckhart", "Harvey Dent"
+  7, 2,  "Harvey Dent"
 ), (
-  "The Dark Knight", "Michael Caine", "Alfred"
+  2, 2,  "Alfred"
 ), (
-  "The Dark Knight", "Maggie Gyllenhaal", "Rachel Dawes"
+  8, 2, "Rachel Dawes"
+  ), (
+  1, 3, "Bruce Wayne"
+  ), (
+  5, 3, "Commisioner Gordon"
+  ), (
+  9, 3, "Bane"
+  ), (
+  10, 3, "John Blake"
+  ), (
+  11, 3, "Selina Kyle"
 );
 
 
@@ -202,7 +246,9 @@ INSERT INTO roles (
 -- The SQL statement for the movies output
 -- TODO!
 
-SELECT movie_title, year_released, MPAA_rating, studio_id from movies;
+SELECT movies.movie_title, movies.year_released, movies.MPAA_rating, studios.studio_name
+FROM movies
+JOIN studios ON movies.studio_id = studios.id;
 
 -- Prints a header for the cast output
 .print ""
@@ -214,4 +260,8 @@ SELECT movie_title, year_released, MPAA_rating, studio_id from movies;
 -- The SQL statement for the cast output
 -- TODO!
 
-SELECT movie_id, actor_id, role FROM roles
+SELECT movies.movie_title, actors.actor_name, roles.role
+FROM roles
+JOIN movies ON roles.movie_id = movies.id
+JOIN actors ON roles.actor_id = actors.id
+ORDER BY movies.year_released ASC;
